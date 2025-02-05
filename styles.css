@@ -303,22 +303,25 @@
 
 .main__img--container {
     position: absolute;
-    height: 100%;
-    width: 100%; /* Ensure the container spans the full width */
+    height: 90%;
+    width: 60%; /* Ensure the container spans the full width */
     overflow: hidden;
     z-index: 1;
     right: 0; /* Aligns the container to the right */
+    margin-right: 60px;
+    
 }
 
 #main__img {
-    height: 100%;
-    width: 50%; /* Maintain the image aspect ratio */
+    height: 180%;
+    width: 90%; /* Maintain the image aspect ratio */
     position: absolute;
     right: 0; /* Position the image to the far right */
     z-index: 1;
     object-fit: cover; /* Adjust based on your design preference */
-    object-position: center top; 
-    margin-right: 110px;
+    /* object-position: center top;  */
+    right: 0; /* Aligns the container to the right */
+    margin-right: 60px;
 } 
 
 .main__img--container::before {
@@ -327,69 +330,68 @@
     width: 100%;
     height: 100%;
     background: 
-    linear-gradient(to right, #121212 50%,transparent 60%, transparent 75%, #121212 100%),
+    linear-gradient(to right,#121212 0%, #121212 20%, transparent 45%, transparent 70%, #121212 100%),
     linear-gradient(to bottom, #121212 0%, transparent 10%, transparent 95%, #121212 100%);
     z-index: 2;
     overflow: hidden;
+    right: 0; /* Aligns the container to the right */
+    margin-right: 60px;
 }
 
 /* Mobile Responsive */
 @media screen and (max-width: 768px) {
     .main__container {
         display: flex;
-        flex-direction: column; /* Stack elements vertically */
-        align-items: center; /* Center align content */
-        height: auto; /* Allow height to adjust */
-        padding: 3rem; /* Adjust padding */
+        flex-direction: column;
+        align-items: center;
+        height: 100vh; /* Full height */
+        padding: 3rem;
+        position: relative; /* Needed for absolute positioning */
+        overflow: hidden;
     }
 
     .main__content {
         position: relative;
-        top: 0;
+        z-index: 2; /* Ensures text appears above */
         padding-top: 2rem;
         text-align: center;
-    }
-
-    .main__content h1 {
-        font-size: 6rem;
-        background-image: none;
-        background-color: #b7b104;
-    }
-
-    .main__content h3 {
-        font-size: 1.45rem;
-    }
-
-    .main__content p {
-        font-size: 1.3rem;
-    }
-
-    .main__btn {
-        font-size: 0.9rem;
-        padding: 10px 24px;
+        color: white; /* Ensure text is readable */
     }
 
     .main__img--container {
+        background: none;
+        position: absolute;
+        top: 0;
+        left: 0;
         width: 100%;
-        height: 80vh; /* Set a fixed height for the container */
-        margin-top: 2rem;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        overflow: visible; /* Ensure the image is not clipped */
-        position: relative;
-        z-index: 1;
+        height: 100%;
+        overflow: hidden;
+    }
+
+.main__img--container::before {
+        content: "";
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        background: 
+        linear-gradient(to right, #121212 0%,transparent 50%, transparent 85%, #121212 100%),
+        linear-gradient(to bottom, #121212 0%, transparent 10%, transparent 95%, #121212 100%);
+        z-index: -2;
     }
 
     #main__img {
         width: 100%;
         height: 100%;
         object-fit: cover;
-        position: relative; /* Ensure proper positioning */
-        z-index: 1;
+        opacity: 0.65; /* Adjust for readability */
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: 1; /* Ensure it's behind text */
     }
+}
 
-    .main__img--container::before {
+    /* .main__img--container::before {
         content: "";
         position: center;
         width: 110%;
@@ -397,17 +399,17 @@
         background: 
         linear-gradient(to right, #121212 0%,transparent 50%, transparent 85%, #121212 100%),
         linear-gradient(to bottom, #121212 0%, transparent 10%, transparent 95%, #121212 100%);
-        z-index: 2;
-    }
-}
+        z-index: -2;
+    } */
+/* } */
 
-@media screen and (max-width: 480px) {
+/* @media screen and (max-width: 480px) {
     .main__container {
-        padding: 1rem; /* Further reduce padding for smaller screens */
+        padding: 1rem; Further reduce padding for smaller screens
     }
 
     .main__content h1 {
-        font-size: 3rem; /* Further adjust font size */
+        font-size: 3rem; Further adjust font size
     }
 
     .main__content h3 {
@@ -424,15 +426,41 @@
     }
 
     .main__img--container {
-        height: 50vh; /* Reduce image container height */
+        height: 50vh; Reduce image container height
     }
 
     #main__img {
         height: 100%;
-        object-fit: cover; /* Ensure image fits well */
-        object-position: center; /* Center the image */
+        object-fit: cover; Ensure image fits well
+        object-position: center; Center the image
     }
-}
+} */
+
+/* @media screen and (max-width: 768px) {
+    .main__img--container {
+        position: relative;
+        width: 100%;
+        height: 100vh; /* Adjust as needed */
+        /* overflow: hidden;
+    }
+
+    .main__img--container img {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        opacity: 0.5; /* Reduce opacity instead of adding a gradient */
+        /* z-index: -1;
+    }
+
+    .main__text {
+        position: relative;
+        z-index: 1; /* Ensure text stays above the image */
+    /* }
+} */
+
 /* Portfolio Section CSS */
 .portfolio{
     background-image: linear-gradient(to bottom,#121212 0%,  #626262 50%, #121212 100%);
@@ -447,7 +475,7 @@
 .portfolio h1{
     color: #b7b104;
     background-size: 100%;
-    text-shadow: 2px 2px 2px #121212;
+    text-shadow: 2px 2px 2px #000000;
     margin-bottom: 4rem;
     font-size: 4rem;
 }
@@ -493,6 +521,14 @@
     transition: opacity 0.5s ease-in-out;
 }
 
+@media screen and (max-width: 768px) {
+    .portfolio__grid {
+        display: flex;
+        flex-direction: column;
+        align-items: center; /* Center align if needed */
+    }
+}
+
 /* Services Section CSS */
 .services{
     background-color: #121212;
@@ -505,14 +541,11 @@
 }
 
 .services h1{
-    background-color: #b7b104;
+    color: #b7b104;
     background-size: 100%;
-    margin-bottom: 5rem;
-    font-size: 3rem;
-    -webkit-background-clip: text;
-    -moz-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    -moz-text-fill-color: transparent;
+    text-shadow: 2px 2px 2px #000000;
+    margin-bottom: 4rem;
+    font-size: 4rem;
 }
 
 .services__container{
@@ -527,16 +560,12 @@
     height: 525px;
     width: 400px;
     border-radius: 4px;
-    background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, rgba(17, 17, 17, 0.6) 100%), url(/vr_guy.jpg);
+    background: linear-gradient(to bottom, transparent 0%, #121212 90%);
     background-size: cover;
     position: relative;
     color: #fff;
     display: inline;
     overflow: hidden;
-}
-
-.services__card:nth-child(2){
-    background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, rgba(17, 17, 17, 0.6) 100%), url(/vr_girl.jpg);
 }
 
 .services h2{
@@ -577,7 +606,7 @@
 
 .services__card:hover{
     transform: scale(1.075);
-    transition: 0.2s ease-in;
+    transition: 0.2s ease-in-out;
     cursor: pointer;
 }
 
@@ -596,8 +625,7 @@
     left: 0;
     width: 100%;
     height: 100%;
-    background: linear-gradient(to bottom, transparent 50%, #121212 100%);
-    z-index: 1;
+    background: linear-gradient(to bottom, transparent 0%, transparent 20%, #121212 85%);
     pointer-events: none; /* Ensures it doesn't interfere with interactions */
     border-radius: 4px;
     z-index: 1;
